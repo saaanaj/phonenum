@@ -1,31 +1,23 @@
 const prefix = document.querySelector("#prefix");
 const country = document.querySelector("#country");
 const phone = document.querySelector("#phone"); 
-const resluyr = document.querySelector("#out-country")
-const outnames = document.querySelector("#outname")
-const button = document.querySelector("#getNumberBtn");
-const checkBtn = document.querySelector("#checkBtn")
-const Operator = document.querySelector("#out-operator")
+const resluyr = document.querySelector("#out-country");
+const outnames = document.querySelector("#outname");
+const Operator = document.querySelector("#out-operator");
+const checkBtn = document.querySelector("#checkBtn");
+
+// Set prefix and max length based on selected country
 function setPrefixAndMax() {
     const selected = country.options[country.selectedIndex];
-    prefix.value = selected.value;               // prefix set
-    phone.maxLength = selected.dataset.length;   // max length set
+    prefix.value = selected.value;               // set prefix
+    phone.maxLength = selected.dataset.length;   // set max length
     resluyr.innerHTML = selected.value;         // show prefix
 }
 
 setPrefixAndMax();
-
-// jab user country select kare
 country.addEventListener("change", setPrefixAndMax);
 
-
-// const outname = document.querySelector("#outname")
-
-const getnhphone = Number(phone.value.trim())
-// const urk = "https://truecaller.wasdark336.workers.dev/index.cpp?key=dark&number=918789968980"
-
-
-outname.innerHTML = getnhphone
+// Check number button click
 checkBtn.addEventListener("click", () => {
     const usrnnumber = phone.value.trim();
     if (!usrnnumber) {
@@ -37,6 +29,8 @@ checkBtn.addEventListener("click", () => {
     const fullnumber = prudix + usrnnumber;
 
     const url = "https://truecaller.wasdark336.workers.dev/index.cpp?key=dark&number=" + fullnumber;
+
+    // Proxy optional: CORS bypass (temporary allow needed on public proxy)
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     outnames.innerHTML = "Loading...";
@@ -49,16 +43,22 @@ checkBtn.addEventListener("click", () => {
     .then(text => {
         try {
             const data = JSON.parse(text);
-            const dataopsj = `: ${data[0].name}`;
-            const tyeshd = `: ${data[0].type}`;
-            outnames.innerHTML = dataopsj;
-            Operator.innerHTML = tyeshd
+            if (Array.isArray(data) && data.length > 0) {
+                outnames.innerHTML = `: ${data[0].name}`;
+                Operator.innerHTML = `: ${data[0].type}`;
+            } else {
+                outnames.innerHTML = "No data found for this number";
+                Operator.innerHTML = "-";
+            }
         } catch (err) {
-            outnames.innerHTML = `invalid number response: ${text}`;
+            outnames.innerHTML = `Invalid number response: ${text}`;
+            Operator.innerHTML = "-";
         }
     })
     .catch(err => {
         outnames.innerHTML = `Error: ${err}`;
+        Operator.innerHTML = "-";
     });
-    phone.value = ""
+
+    phone.value = "";
 });
