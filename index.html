@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Country Phone Lookup</title>
+  <link rel="stylesheet" href="sh.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Country Phone Lookup</h2>
+    <div class="form-group">
+      <label for="country">Select Country:</label>
+        <select id="country">
+        <option value="+91" data-name="India" data-flag="🇮🇳" data-length="10">🇮🇳 India (+91)</option>
+        <option value="+92" data-name="Pakistan" data-flag="🇵🇰" data-length="10">🇵🇰 Pakistan (+92)</option>
+        <option value="+1" data-name="United States" data-flag="🇺🇸" data-length="10">🇺🇸 United States (+1)</option>
+        <option value="+44" data-name="United Kingdom" data-flag="🇬🇧" data-length="10">🇬🇧 United Kingdom (+44)</option>
+        <option value="+61" data-name="Australia" data-flag="🇦🇺" data-length="9">🇦🇺 Australia (+61)</option>
+        <option value="+81" data-name="Japan" data-flag="🇯🇵" data-length="10">🇯🇵 Japan (+81)</option>
+        <option value="+49" data-name="Germany" data-flag="🇩🇪" data-length="11">🇩🇪 Germany (+49)</option>
+        <option value="+33" data-name="France" data-flag="🇫🇷" data-length="9">🇫🇷 France (+33)</option>
+        <option value="+39" data-name="Italy" data-flag="🇮🇹" data-length="10">🇮🇹 Italy (+39)</option>
+        <option value="+86" data-name="China" data-flag="🇨🇳" data-length="11">🇨🇳 China (+86)</option>
+        <option value="+7" data-name="Russia" data-flag="🇷🇺" data-length="10">🇷🇺 Russia (+7)</option>
+        <option value="+55" data-name="Brazil" data-flag="🇧🇷" data-length="11">🇧🇷 Brazil (+55)</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <div class="phone-input">
+        <input id="prefix" type="text"  readonly /> 
+        <input id="phone" type="tel" placeholder="Enter number" />
+      </div>
+    </div>
+    <button id="checkBtn">Check</button>
+    <div id="output" class="output">
+      <p><strong>Country:</strong> <span id="out-country"></span></p>
+      <p><strong>name:</strong> <span id="outname"></span></p>
+      <!-- <p><strong>Code:</strong> <span id="out-code"></span></p> -->
+      <p><strong>Operator:</strong> <span id="out-operator"></span></p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
