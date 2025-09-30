@@ -33,11 +33,11 @@ checkBtn.addEventListener("click", () => {
     const fullnumber = prudix + usrnnumber;
 
     const url = "https://truecaller.wasdark336.workers.dev/index.cpp?key=dark&number=" + fullnumber;
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+   
 
     outnames.innerHTML = "Loading...";
 
-    fetch(proxyUrl, { 
+    fetch(url, { 
         method: "GET",
         headers: { "Content-Type": "application/json" }
     })
